@@ -1,43 +1,35 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './Login.css';
+<?php
+// backend/api/login.php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json");
+include_once '../db.php'; // Đường dẫn đến file db.php của bạn
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+$data = json_decode(file_get_contents("php://input"));
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:8888/backend/api/login_json.php', { email, password });
-      if (res.data.success) {
-        localStorage.setItem('user', JSON.stringify(res.data.user));
-        // Nếu là admin, có thể chuyển hướng đến link PHP admin hoặc Dashboard React
-        if (res.data.user.role === 'admin') {
-            window.location.href = "http://localhost:8888/backend/admin/movies.php";
-        } else {
-            window.location.href = "/";
-        }
-      } else {
-        alert(res.data.message);
-      }
-    } catch (err) {
-      alert("Login failed!");
+if (isset($data->email) && isset($data->password)) {
+    $email = mysqli_real_escape_string($conn, $data->email);
+    $password = mysqli_real_escape_string($conn, $data->password);
+
+    // 1. Kiểm tra trong bảng admins
+    $sql_admin = "SELECT id, name, 'admin' as role FROM admins WHERE email='$email' AND password='$password' LIMIT 1";
+    $res_admin = $conn->query($sql_admin);
+
+    if ($res_admin && $res_admin->num_rows > 0) {
+        $admin = $res_admin->fetch_assoc();
+        echo json_encode(["success" => true, "user" => $admin]);
+        exit();
     }
-  };
 
-  return (
-    <div className="login-container" style={{paddingTop: '150px', textAlign: 'center'}}>
-      <form onSubmit={handleLogin} className="m-auto" style={{maxWidth: '300px'}}>
-        <h2 className="text-white mb-4">LOGIN</h2>
-        <input type="email" className="form-control mb-3" placeholder="Email" onChange={e => setEmail(e.target.value)} required />
-        <input type="password" className="form-control mb-3" placeholder="Password" onChange={e => setPassword(e.target.value)} required />
-        <button className="btn btn-premium-orange w-100">Login</button>
-      </form>
-    </div>
-  );
-};
+    // 2. Kiểm tra trong bảng users (nếu có)
+    $sql_user = "SELECT id, fullname as name, 'user' as role FROM users WHERE email='$email' AND password='$password' LIMIT 1";
+    $res_user = $conn->query($sql_user);
 
-export default Login;
+    if ($res_user && $res_user->num_rows > 0) {
+        $user = $res_user->fetch_assoc();
+        echo json_encode(["success" => true, "user" => $user]);
+        exit();
+    }
+
+    echo json_encode(["success" => false, "message" => "Sai email hoặc mật khẩu!"]);
+}
