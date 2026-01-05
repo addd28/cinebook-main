@@ -81,7 +81,6 @@ if (isset($_POST['add_room'])) {
     header("Location: cinemas.php?msg=room_added"); exit();
 }
 
-// UPDATE ROOM LOGIC (NEWLY ADDED)
 if (isset($_POST['update_room'])) {
     $room_id = intval($_POST['room_id']);
     $room_name = mysqli_real_escape_string($conn, $_POST['room_name']);
@@ -157,19 +156,40 @@ ob_start();
     <?php endwhile; ?>
 </div>
 
-<div class="modal fade" id="editRoomModal" tabindex="-1">
+<div class="modal fade" id="addCinemaModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content border-0 rounded-4 shadow" method="POST">
-            <div class="modal-header border-0 p-4 pb-0"><h5 class="fw-bold">Update Room Name</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <form class="modal-content border-0 rounded-4 shadow" method="POST" enctype="multipart/form-data">
+            <div class="modal-header border-0 p-4 pb-0"><h5 class="fw-bold">Add New Cinema Complex</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
             <div class="modal-body p-4">
-                <input type="hidden" name="room_id" id="er_id">
-                <div class="mb-3">
-                    <label class="small fw-bold">New Room Name</label>
-                    <input type="text" name="room_name" id="er_name" class="form-control" required>
+                <div class="mb-3"><label class="small fw-bold">Cinema Name</label><input type="text" name="name" class="form-control" required></div>
+                <div class="mb-3"><label class="small fw-bold">City</label><select name="city" class="form-select"><option value="Hanoi">Hanoi</option><option value="Ho Chi Minh City">Ho Chi Minh City</option><option value="Da Nang">Da Nang</option></select></div>
+                <div class="mb-3"><label class="small fw-bold">Detailed Address</label><textarea name="address" class="form-control" rows="2"></textarea></div>
+                <div class="mb-0"><label class="small fw-bold">Cinema Image</label><input type="file" name="cinema_image" class="form-control" accept="image/*" required></div>
+            </div>
+            <div class="modal-footer border-0 p-4 pt-0">
+                <button type="submit" name="add_cinema" class="btn btn-dark w-100 rounded-pill py-2 fw-bold shadow-sm">SAVE CINEMA</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="editCinemaModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content border-0 rounded-4 shadow" method="POST" enctype="multipart/form-data">
+            <div class="modal-header border-0 p-4 pb-0"><h5 class="fw-bold">Update Cinema Info</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body p-4">
+                <input type="hidden" name="cinema_id" id="ec_id">
+                <div class="mb-3"><label class="small fw-bold">Cinema Name</label><input type="text" name="name" id="ec_name" class="form-control" required></div>
+                <div class="mb-3"><label class="small fw-bold">City</label><select name="city" id="ec_city" class="form-select"><option value="Hanoi">Hanoi</option><option value="Ho Chi Minh City">Ho Chi Minh City</option><option value="Da Nang">Da Nang</option></select></div>
+                <div class="mb-3"><label class="small fw-bold">Address</label><textarea name="address" id="ec_address" class="form-control" rows="2"></textarea></div>
+                <div class="mb-0">
+                    <label class="small fw-bold">Change Image (optional)</label>
+                    <input type="file" name="cinema_image" class="form-control" accept="image/*">
+                    <div id="ec_img_preview" class="mt-2 text-center"></div>
                 </div>
             </div>
             <div class="modal-footer border-0 p-4 pt-0">
-                <button type="submit" name="update_room" class="btn btn-dark w-100 rounded-pill py-2 fw-bold shadow-sm">SAVE CHANGES</button>
+                <button type="submit" name="update_cinema" class="btn btn-dark w-100 rounded-pill py-2 fw-bold shadow-sm">SAVE CHANGES</button>
             </div>
         </form>
     </div>
@@ -199,8 +219,23 @@ ob_start();
     </div>
 </div>
 
-<div class="modal fade" id="addCinemaModal" tabindex="-1">...</div>
-<div class="modal fade" id="editCinemaModal" tabindex="-1">...</div>
+<div class="modal fade" id="editRoomModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content border-0 rounded-4 shadow" method="POST">
+            <div class="modal-header border-0 p-4 pb-0"><h5 class="fw-bold">Update Room Name</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-body p-4">
+                <input type="hidden" name="room_id" id="er_id">
+                <div class="mb-3">
+                    <label class="small fw-bold">New Room Name</label>
+                    <input type="text" name="room_name" id="er_name" class="form-control" required>
+                </div>
+            </div>
+            <div class="modal-footer border-0 p-4 pt-0">
+                <button type="submit" name="update_room" class="btn btn-dark w-100 rounded-pill py-2 fw-bold shadow-sm">SAVE CHANGES</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script>
 function openEditCinemaModal(id, name, city, address, img_url) {
@@ -219,7 +254,6 @@ function openAddRoomModal(id, name) {
     new bootstrap.Modal(document.getElementById('addRoomModal')).show();
 }
 
-// OPEN EDIT ROOM MODAL (NEWLY ADDED)
 function openEditRoomModal(id, name) {
     document.getElementById('er_id').value = id;
     document.getElementById('er_name').value = name;
@@ -230,7 +264,7 @@ function openEditRoomModal(id, name) {
 <style>
     .text-orange { color: #ff9800 !important; }
     .cinema-card { transition: all 0.3s; border: 1px solid #eee !important; }
-    .cinema-card:hover { transform: translateY(-5px); border-color: #ff9800 !important; }
+    .cinema-card:hover { transform: translateY(-5px); border-color: #ff9800 !important; box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important; }
     .room-list::-webkit-scrollbar { width: 4px; }
     .room-list::-webkit-scrollbar-thumb { background: #ff9800; border-radius: 10px; }
 </style>
