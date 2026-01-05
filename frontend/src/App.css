@@ -1,0 +1,92 @@
+/* RESET HỆ THỐNG */
+#root {
+  width: 100%;
+  display: block !important; /* Fix lỗi chia đôi màn hình do Flex mặc định */
+}
+
+:root {
+  --orange-cine: #f37021;
+  --dark-deep: #0b0b0b;
+  --dark-surface: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  background-color: var(--dark-deep);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* KHUNG CHỨA CHÍNH */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-area {
+  flex: 1 0 auto;
+}
+
+/* HERO SECTION (BANNER) */
+.hero-section {
+  height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center 20%;
+}
+
+.hero-overlay-v4 {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #0b0b0b 15%, transparent 70%),
+              linear-gradient(to top, #0b0b0b 5%, transparent 30%);
+}
+
+.movie-title-v4 {
+  font-size: clamp(2.5rem, 8vw, 5rem); /* Tự co giãn chữ */
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+/* MOVIE CARDS GRID */
+.movie-card-v4 {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.poster-wrapper-v4 {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.movie-card-v4:hover {
+  transform: translateY(-10px);
+}
+
+.card-tag-v4 {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--orange-cine); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem;
+}
+
+.card-rating-v4 {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,0.7); padding: 2px 8px; border-radius: 4px; color: #ffc107; font-size: 0.8rem;
+}
+
+/* BUTTONS */
+.btn-orange-v4 {
+  background: var(--orange-cine);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}

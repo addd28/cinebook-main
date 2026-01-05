@@ -1,0 +1,159 @@
+.cinemas-container-v4 {
+    background-color: #080808;
+    min-height: 100vh;
+    padding-top: 70px;
+}
+
+.cinemas-hero-v4 {
+    background: linear-gradient(rgba(0,0,0,0.8), #080808), 
+                url('https://images.unsplash.com/photo-1517604401157-538e9663ec1c?q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+/* City Filter Tabs */
+.city-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    background: #151515;
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid #333;
+}
+
+.city-tab-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    padding: 8px 25px;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.city-tab-btn.active {
+    background: #ff5f00;
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 95, 0, 0.3);
+}
+
+/* Cinema Cards */
+.cinema-card-v4 {
+    background: #111;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #222;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+}
+
+.cinema-card-v4:hover {
+    transform: translateY(-10px);
+    border-color: #ff5f00;
+}
+
+.cinema-poster {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.cinema-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.cinema-card-v4:hover .cinema-poster img {
+    transform: scale(1.1);
+}
+
+.cinema-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.7);
+    color: #ff5f00;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border: 1px solid #ff5f00;
+}
+
+.cinema-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.cinema-card-v4:hover .cinema-overlay {
+    opacity: 1;
+}
+
+.cinema-info-v4 {
+    padding: 20px;
+}
+
+.cinema-title {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.cinema-address {
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    height: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cinema-amenities {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    color: #555;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+.cinema-amenities span:hover {
+    color: #ff5f00;
+    cursor: help;
+}
+/* Placeholder for when image fails */
+.cinema-poster.no-image {
+    background: linear-gradient(45deg, #1a1a1a, #333);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+}
+
+.cinema-poster.no-image::after {
+    content: "🎬 Cinestar";
+    color: #555;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.cinema-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}

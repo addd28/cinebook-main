@@ -1,0 +1,468 @@
+/* Giao diện chung đồng bộ với Home-v4 */
+.booking-v4 {
+    background-color: #080808;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Stepper kiểu hiện đại */
+.booking-stepper {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+.step-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+.step-unit.active { opacity: 1; }
+.step-num {
+    width: 30px; height: 30px;
+    background: #222;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+    font-weight: 800;
+    border: 2px solid transparent;
+}
+.step-unit.active .step-num {
+    background: #f37021;
+    box-shadow: 0 0 15px rgba(243, 112, 33, 0.4);
+}
+.step-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Main Card */
+.booking-main-card {
+    background: #111;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.booking-section-title {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #fff;
+    border-left: 4px solid #f37021;
+    padding-left: 15px;
+}
+
+/* Cinema & Showtime Selection */
+.cinema-selector-item {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+.cinema-selector-item.active {
+    border-color: #f37021;
+    background: rgba(243, 112, 33, 0.1);
+    color: #f37021;
+    font-weight: 700;
+}
+
+.showtime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+}
+.showtime-item-v4 {
+    background: #222;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.showtime-item-v4:hover, .showtime-item-v4.active {
+    background: #f37021;
+    color: #fff;
+}
+.st-time { display: block; font-weight: 800; font-size: 1.1rem; }
+.st-room { display: block; font-size: 0.7rem; opacity: 0.7; }
+
+/* Seats Section - THEO YÊU CẦU MÀU SẮC */
+.screen-container-v4 {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+.screen-glow {
+    height: 4px;
+    background: #f37021;
+    border-radius: 50%;
+    box-shadow: 0 -5px 20px #f37021;
+    margin-bottom: 10px;
+}
+.screen-text { color: #555; font-size: 0.7rem; letter-spacing: 10px; }
+
+.seats-layout-v4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+    gap: 8px;
+    max-width: 550px;
+    margin: 0 auto;
+}
+.seat-unit-v4 {
+    width: 35px; height: 35px;
+    border-radius: 4px;
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-weight: bold;
+}
+
+/* Các loại ghế từ admin */
+.seat-unit-v4.gold { background-color: #ffc107; color: #000; }      /* Vàng */
+.seat-unit-v4.platinum { background-color: #0dcaf0; color: #fff; }  /* Xanh dương */
+.seat-unit-v4.box { background-color: #dc3545; color: #fff; }       /* Đỏ */
+
+/* Trạng thái ghế */
+.seat-unit-v4.selected { 
+    background-color: #f37021 !important; 
+    color: #fff !important; 
+    transform: scale(1.15); 
+    box-shadow: 0 0 10px #f37021; 
+}
+.seat-unit-v4.occupied { 
+    background-color: #333 !important; 
+    color: #555 !important; 
+    cursor: not-allowed; 
+    opacity: 0.4;
+    filter: grayscale(1);
+}
+
+.legend-grid-v4 {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+}
+.lg-item { display: flex; align-items: center; font-size: 0.8rem; }
+.lg-box { width: 16px; height: 16px; border-radius: 3px; margin-right: 8px; }
+.lg-box.gold { background: #ffc107; }
+.lg-box.platinum { background: #0dcaf0; }
+.lg-box.box { background: #dc3545; }
+.lg-box.occupied { background: #333; }
+.lg-box.selected { background: #f37021; }
+
+/* Food Section */
+.food-row-v4 {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px; border-bottom: 1px solid #222;
+}
+.food-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+.food-name { font-weight: 700; color: #fff; }
+.food-price { color: #f37021; font-weight: 800; font-size: 0.9rem; }
+.food-qty-control { display: flex; align-items: center; gap: 15px; }
+.food-qty-control button {
+    width: 25px; height: 25px; border-radius: 50%; border: none; background: #333; color: #fff;
+}
+.food-qty-control button:hover { background: #f37021; }
+
+/* Booking Summary Sidebar - Đồng bộ Home-v4 */
+.booking-summary-v4 {
+    background: #111;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.summary-poster-container { position: relative; height: 100%; }
+.summary-poster-container img { width: 100%; height: 100%; object-fit: cover; }
+.summary-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, #111 0%, transparent 100%);
+}
+.movie-summary-title { font-weight: 900; color: #f37021; margin-bottom: 20px; text-transform: uppercase; }
+.summary-info-item { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 10px; }
+.summary-info-item span { color: #888; }
+.text-orange { color: #f37021; }
+.summary-divider { border-color: #222; margin: 20px 0; }
+.total-container { display: flex; justify-content: space-between; align-items: center; }
+.total-label { font-weight: 800; font-size: 0.9rem; color: #888; }
+.total-price { color: #f37021; font-size: 1.6rem; font-weight: 900; }
+
+/* Buttons */
+.btn-v4-primary {
+    background: #f37021; color: #fff; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 800; transition: 0.3s;
+}
+.btn-v4-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(243, 112, 33, 0.4); }
+.btn-v4-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-v4-outline {
+    background: transparent; color: #888; border: 1px solid #333; padding: 12px 30px; border-radius: 8px; font-weight: 700; transition: 0.3s;
+}
+.btn-v4-outline:hover { color: #fff; border-color: #fff; }
+
+/* Loader */
+.loader-container { height: 100vh; display: flex; align-items: center; justify-content: center; background: #080808; }
+.loader { width: 50px; height: 50px; border: 3px solid #333; border-top-color: #f37021; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.fade-in { animation: fadeIn 0.5s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+/* Fix Seat Visibility */
+.seats-layout-v4 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.seat-unit-v4 {
+    width: 38px;
+    height: 38px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.1); /* Cho dễ nhìn thấy viền */
+}
+
+/* Colors based on Admin types */
+.seat-unit-v4.gold { background-color: #ffc107 !important; color: #000; }
+.seat-unit-v4.platinum { background-color: #0dcaf0 !important; color: #fff; }
+.seat-unit-v4.box { background-color: #dc3545 !important; color: #fff; }
+
+.seat-unit-v4.selected { 
+    background-color: #f37021 !important; 
+    color: #fff !important; 
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(243, 112, 33, 0.5);
+}
+
+.seat-unit-v4.occupied { 
+    background-color: #2a2a2a !important; 
+    color: #555 !important; 
+    cursor: not-allowed; 
+    opacity: 0.3;
+    border: none;
+}
+/* Các thuộc tính CSS khác giữ nguyên từ phản hồi trước */
+/* --- PHẦN SỬA LỖI MÀU NÚT --- */
+
+/* 1. Nút Next Step / Confirm Booking */
+.btn-v4-primary {
+    background: #f37021 !important; /* Đảm bảo luôn lấy màu cam */
+    color: #fff !important;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-v4-primary:hover:not(:disabled) {
+    background: #ff8137 !important; /* Màu cam sáng hơn khi hover */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(243, 112, 33, 0.4);
+}
+
+.btn-v4-primary:disabled {
+    background: #333 !important;
+    color: #666 !important;
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 2. Nút + và - trong phần Food & Drink */
+.food-qty-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #1a1a1a;
+    padding: 5px 12px;
+    border-radius: 25px;
+    border: 1px solid #333;
+}
+
+.food-qty-control button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #333; /* Nền tối mặc định */
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.food-qty-control button:hover {
+    background: #f37021; /* Chuyển cam khi hover */
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.food-qty-control span {
+    font-weight: 800;
+    color: #f37021; /* Số lượng hiển thị màu cam */
+    min-width: 20px;
+    text-align: center;
+}
+
+/* --- CẬP NHẬT GIAO DIỆN PHÒNG/SUẤT CHIẾU --- */
+.showtime-item-v4.active {
+    background: #f37021 !important;
+    border-color: #f37021;
+    color: #fff !important;
+}
+
+.showtime-item-v4.active .st-room {
+    color: #fff;
+    opacity: 0.9;
+}
+
+/* --- CẬP NHẬT SIDEBAR TỔNG TIỀN --- */
+.total-price {
+    color: #f37021;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(243, 112, 33, 0.2);
+}
+
+/* Tinh chỉnh lại phần hiển thị sơ đồ ghế để không bị lệch */
+.seats-layout-v4 {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Giả sử rạp có 10 ghế mỗi hàng */
+    gap: 10px;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+@media (max-width: 576px) {
+    .seats-layout-v4 {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+    }
+    .seat-unit-v4 {
+        width: 32px;
+        height: 32px;
+    }
+}
+/* Ghế người khác đang giữ: Khóa click, đổi màu xám nhạt */
+.seat-unit-v4.others-holding {
+    background-color: #e0e0e0 !important;
+    color: #999 !important;
+    cursor: not-allowed !important;
+    pointer-events: none; /* Ngăn chặn hoàn toàn việc click */
+}
+
+/* Ghế mình đang giữ: Màu cam nổi bật */
+.seat-unit-v4.selected {
+    background-color: #f37021 !important;
+    color: white !important;
+    border-color: #f37021 !important;
+}
+/* Ghế đã có người đặt - Màu đỏ hoặc xám đậm */
+.seat-unit-v4.occupied {
+    background-color: #444 !important;
+    color: #888 !important;
+    cursor: not-allowed !important; /* Đổi icon chuột thành dấu cấm */
+    border-color: #222 !important;
+    opacity: 0.6;
+}
+
+/* Ghế đang được người khác giữ - Màu vàng/cam nhạt */
+.seat-unit-v4.holding {
+    background-color: #ff9800;
+    color: white;
+    cursor: not-allowed !important;
+    animation: pulse-holding 2s infinite; /* Hiệu ứng nhấp nháy nhẹ */
+}
+
+@keyframes pulse-holding {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Loại bỏ hiệu ứng hover khi ghế không thể chọn */
+.seat-unit-v4.occupied:hover,
+.seat-unit-v4.holding:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+/* Giao diện chọn phương thức thanh toán */
+.payment-methods-v4 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-card:hover {
+    border-color: #ff5b00;
+}
+
+.payment-card.active {
+    border-color: #ff5b00;
+    background: rgba(255, 91, 0, 0.05);
+}
+
+.payment-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.payment-icon.momo { background: #ae2070; color: white; }
+.payment-icon.atm { background: #00468c; color: white; font-size: 20px; }
+
+.payment-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-name {
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.payment-desc {
+    color: #888;
+    font-size: 12px;
+}
+
+.payment-check {
+    font-size: 22px;
+    color: #444;
+}
+
+.payment-card.active .payment-check {
+    color: #ff5b00;
+}

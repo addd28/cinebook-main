@@ -1,0 +1,201 @@
+/* src/components/Footer.css */
+
+.premium-footer-v4 {
+  background-color: #080808; /* Màu đen sâu hơn nền web */
+  padding: 80px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  margin-top: auto;
+}
+
+/* Logo Styling */
+.footer-logo-v4 {
+  font-size: 1.6rem;
+  letter-spacing: -1px;
+}
+.text-orange { color: #f37021; }
+.fw-black { font-weight: 900; }
+
+.footer-text-muted {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+/* Heading */
+.footer-heading-v4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+  position: relative;
+}
+
+.footer-heading-v4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 30px;
+  height: 2px;
+  background: #f37021;
+}
+
+/* List Links */
+.footer-list-v4 {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-list-v4 li {
+  margin-bottom: 12px;
+}
+
+.footer-list-v4 a {
+  text-decoration: none;
+  color: #888;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.footer-list-v4 a:hover {
+  color: #f37021;
+  padding-left: 8px;
+}
+
+/* Social Icons */
+.social-item {
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.social-item:hover {
+  background: #f37021;
+  transform: translateY(-5px);
+  color: #fff;
+}
+
+/* App Badges */
+.app-badges-v4 img {
+  height: 32px;
+  filter: grayscale(1) brightness(0.8);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.app-badges-v4 img:hover {
+  filter: none;
+}
+
+/* Bottom Bar */
+.footer-bottom-v4 {
+  margin-top: 60px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-size: 0.8rem;
+  color: #555;
+}
+/* src/components/Footer.css */
+
+.premium-footer-v4 {
+  background-color: #0b0b0b;
+  padding: 60px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+/* Đồng bộ style logo đã gửi ở bước trước */
+.footer-brand-v4 .brand-star {
+  font-size: 2rem;
+  color: #f37021;
+}
+
+.footer-brand-v4 .brand-main {
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.footer-brand-v4 .brand-sub {
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  color: #888;
+}
+
+.footer-text-muted {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-heading-v4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.footer-list-v4 {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-list-v4 li { margin-bottom: 10px; }
+
+.footer-list-v4 a {
+  color: #888;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-list-v4 a:hover {
+  color: #f37021;
+}
+
+.text-orange { color: #f37021; }
+
+.social-item {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.social-item:hover {
+  background: #f37021;
+  transform: translateY(-3px);
+}
+
+.bct-img {
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.bct-img:hover {
+  filter: none;
+  opacity: 1;
+}
+
+.footer-bottom-v4 {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-size: 0.8rem;
+  color: #555;
+}

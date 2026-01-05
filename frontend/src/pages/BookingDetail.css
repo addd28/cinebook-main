@@ -1,0 +1,135 @@
+/* --- TỔNG QUAN TRANG --- */
+.booking-detail-v4 {
+  background-color: #080808;
+  min-height: 100vh;
+  color: white;
+  padding-top: 100px; 
+  padding-bottom: 50px;
+  position: relative;
+}
+
+/* --- THẺ VÉ CHÍNH --- */
+.main-ticket-card {
+  background: #111111; /* Đảm bảo nền thẻ vé đặc, không trong suốt */
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* --- PHẦN POSTER (BÊN TRÁI) --- */
+.ticket-poster-section {
+  position: relative;
+  min-height: 450px;
+  z-index: 1; /* Thấp hơn nội dung để tránh đè màu */
+}
+
+.ticket-poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* LỖI THƯỜNG GẶP: Gradient bị quá đậm che mất ảnh */
+.ticket-poster-overlay {
+  position: absolute;
+  inset: 0;
+  /* Thay đổi gradient: chỉ làm tối cạnh phải để chuyển tiếp sang phần chữ */
+  background: linear-gradient(to right, transparent 50%, #111111 100%);
+  pointer-events: none; /* Tránh cản trở tương tác chuột */
+}
+
+/* --- PHẦN THÔNG TIN (BÊN PHẢI) --- */
+.ticket-info-section {
+  position: relative;
+  z-index: 2; /* Đảm bảo luôn nằm trên overlay của poster */
+  background: #111111; /* Nền đồng nhất với màu cuối của gradient poster */
+}
+
+/* --- GRID THÔNG TIN VÉ --- */
+.ticket-body-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 25px 0;
+}
+
+/* Ô thông tin kính (Glassmorphism) */
+.info-item-v4.btn-glass {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: 0.3s ease;
+}
+
+.info-item-v4.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: #f37021 !important;
+}
+
+/* Chữ nhãn (DATE, TIME...) */
+.info-item-v4 small {
+  color: #f37021 !important; /* Cam rực rỡ, không pha vàng */
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.info-item-v4 span {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* --- CÁC CHI TIẾT TRANG TRÍ --- */
+.ticket-punch-hole {
+  position: absolute;
+  left: 33.33%; /* Khớp vị trí nối giữa poster và info */
+  width: 40px;
+  height: 40px;
+  background: #080808; /* Phải trùng với background-color của .booking-detail-v4 */
+  border-radius: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.ticket-punch-hole.top { top: -20px; }
+.ticket-punch-hole.bottom { bottom: -20px; }
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .ticket-poster-overlay {
+    background: linear-gradient(to top, #111111 10%, transparent 100%);
+  }
+  .ticket-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .ticket-punch-hole {
+    display: none;
+  }
+}
+.booking-detail-v4 .section-title {
+    border-left: 4px solid #f37021 !important; /* Đổi từ #ff9800 sang cam chuẩn */
+    padding-left: 15px;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.booking-detail-v4 .badge-hot {
+    background-color: #f37021 !important;
+    color: white !important;
+    border: none !important;
+}
