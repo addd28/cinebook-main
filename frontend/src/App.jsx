@@ -16,7 +16,7 @@ import Bookings from './pages/Bookings';
 import BookingDetail from './pages/BookingDetail';
 import MyBookings from './pages/MyBookings';
 import News from './pages/News'; 
-import Login from './pages/Login';
+import Login from './pages/Logins';
 import Register from './pages/Register';
 
 // Styles
